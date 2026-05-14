@@ -1,0 +1,50 @@
+{
+  "maxWorkers": 1,
+  "specPattern": "**/*.spec.ts",
+  "testMatch": ["**/*.spec.ts"],
+  "reporters": ["detox/runners/jest/ reporters"],
+  "configurations": {
+    "android.simulator": {
+      "binaryPath": "android/app/build/outputs/apk/debug/app-debug.apk",
+      "build": "cd android && ./gradlew assembleDebug && cd ..",
+      "type": "android.attached",
+      "device": {
+        "avdName": "Pixel_5_API_30"
+      }
+    },
+    "android.emu": {
+      "binaryPath": "android/app/build/outputs/apk/debug/app-debug.apk",
+      "build": "cd android && ./gradlew assembleDebug && cd ..",
+      "type": "android.emulated",
+      "device": {
+        "avdName": "Pixel_5_API_30",
+        "port": 5554
+      }
+    },
+    "ios.simulator": {
+      "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/FamilyTree.app",
+      "build": "xcodebuild -workspace ios/FamilyTree.xcworkspace -scheme FamilyTree -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build ONLY_ACTIVE_ARCH=YES",
+      "type": "ios.simulator",
+      "device": {
+        "id": "iPhone 15 Pro",
+        "type": "iPhone"
+      }
+    },
+    "ios.simulator.local": {
+      "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/FamilyTree.app",
+      "build": "cd ios && xcodebuild -workspace FamilyTree.xcworkspace -scheme FamilyTree -configuration Debug -sdk iphonesimulator -derivedDataPath build ONLY_ACTIVE_ARCH=YES && cd ..",
+      "type": "ios.simulator",
+      "device": {
+        "type": "iPhone",
+        "id": "iPhone 15 Pro"
+      }
+    }
+  },
+  "runnerConfig": "e2e/jest.config.js",
+  "testEnvironment": "./e2e/testEnvironment",
+  "sourceRoot": "e2e",
+  "setupFilesAfterEnv": ["./init.ts"],
+  "testTimeout": 120000,
+  "globalSetup": "./global-setup.ts",
+  "globalTeardown": "./global-teardown.ts"
+}

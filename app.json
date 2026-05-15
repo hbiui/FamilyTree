@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "FamilyTree",
-    "slug": "family-tree",
+    "slug": "familytree",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,7 +22,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFBF5"
       },
-      "package": "com.familytree.app"
+      "package": "com.familytree.app",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "plugins": [
       "expo-router",
@@ -36,6 +39,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "eas": {
+
+      },
+      "router": {
+        "origin": false
+      }
+    },
+    "owner": "hbiui666"
   }
 }
